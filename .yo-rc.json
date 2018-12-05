@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ameren.app"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "hackathon",
+    "packageName": "com.ameren.app",
+    "packageFolder": "com/ameren/app",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MGE1ZmM0ZTFhODgzN2MyMzgzM2ZhNjUzOWM0NjViNDkwNDc3MWUyYTI4NTk4MjBlZDBlYTIyYTNkMzkzNjFjNGMyOTA2ZjEzYmNlMjQ2YTc1MDU5ZDA5YzljZDllYTQ4N2U2NmVlMmQzYWM5ZTFiMzE1OWE4YzBlNDE4YjI5MzI=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
