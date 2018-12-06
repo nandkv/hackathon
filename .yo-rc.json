@@ -30,6 +30,8 @@
     ],
     "jhiPrefix": "jhi",
     "otherModules": [],
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuAppName": "pure-hamlet-55866",
+    "herokuDeployType": "jar"
   }
 }

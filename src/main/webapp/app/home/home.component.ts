@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     }
 
     findMe() {
-        this.userServce.find(this.lastname).subscribe(response => {
+        this.userServce.find(this.lastname.toLowerCase()).subscribe(response => {
             this.user = response.body;
         });
     }
