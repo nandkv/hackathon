@@ -1,20 +1,54 @@
-
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <form (ngSubmit)="findMe()" #signUpForm="ngForm">
-        <div class="form-group">
-          <label for="description">Last Name</label>
-          <input type="text" class="form-control" name="lastname" required>
+    <div class="row" *ngIf="user == null">
+        <div class="col-md-12">
+          <form (ngSubmit)="findMe()" #signUpForm="ngForm">
+            <div class="form-group">
+              <label for="description">Last Name</label>
+              <input type="text" class="form-control" [(ngModel)]="lastname" name="lastname" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success">Find Me</button>
+            </div>
+          </form>
+          <div class="alert alert-warning">
+              <span>New to Ameren? please register here</span>&nbsp;
+              <a routerLink="/register">Register</a>
+          </div>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success">Find Me</button>
-        </div>
-      </form>
-      <div class="alert alert-warning">
-          <span>New to Ameren? please register here</span>&nbsp;
-          <a routerLink="/register">Register</a>
-      </div>
     </div>
-  </div>
+    <div class="row" *ngIf="user != null">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;" *ngIf="user != null">
+                <img class="card-img-top" src="https://pixel.nymag.com/imgs/daily/strategist/2017/12/11/nerd-gifts/11-nerd-gifts-lede.w700.h700.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.firstName | uppercase}}, {{user.lastName | uppercase}} </h5>
+                    <p class="card-text">Welcome back to Ameren, continue your online checkin here.</p>
+                    <a href="#" class="btn btn-success" (click)="findEvents()">Find My Events</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" *ngIf="events?.length > 0 && epass == null">
+            <div class="row">
+                <div class="card" style="max-width: 18rem;" *ngFor="let event of events">
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.name }} @ {{ event.eventDate | date: 'short'}}</h5>
+                        <p class="card-title">ome quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-success" (click)="checkMeIn(event.id)">Check Me In</a>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="epass != null">
+            <div class="col-md-12">
+                <div class="card" style="width: 18rem;" >
+                    <img class="card-img-top" src="https://internationalbarcodes.com/wp-content/uploads/sites/95/2013/11/SSCC-Pallet-Barcode.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{user.firstName | uppercase}}, {{user.lastName | uppercase}} </h5>
+                        <h5 class="card-title">{{event.name }} @ {{ event.eventDate | date: 'short'}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

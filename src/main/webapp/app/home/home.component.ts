@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { Router } from '@angular/router';
 
-import { LoginModalService, Principal, Account } from 'app/core';
+import { LoginModalService, UserService, Principal, Account, User, IUser } from 'app/core';
+import { EventService } from 'app/entities/event';
+import { IEvent } from 'app/shared/model/event.model';
 
 @Component({
     selector: 'jhi-home',
@@ -12,12 +13,18 @@ import { LoginModalService, Principal, Account } from 'app/core';
 })
 export class HomeComponent implements OnInit {
     account: Account;
-    modalRef: NgbModalRef;
+    user: User;
+    lastname: string;
+    events: IEvent[] = [];
+    epass: string;
+    event: IEvent;
 
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
         private eventManager: JhiEventManager,
+        private userServce: UserService,
+        private eventService: EventService,
         private routerService: Router
     ) {}
 
@@ -40,7 +47,23 @@ export class HomeComponent implements OnInit {
         return this.principal.isAuthenticated();
     }
 
-    login() {
-        this.modalRef = this.loginModalService.open();
+    findMe() {
+        this.userServce.find(this.lastname).subscribe(response => {
+            this.user = response.body;
+        });
+    }
+
+    findEvents() {
+        this.epass = null;
+        this.eventService.query().subscribe(response => {
+            this.events = response.body;
+        });
+    }
+
+    checkMeIn(eventId) {
+        this.eventService.find(eventId).subscribe(response => {
+            this.event = response.body;
+        });
+        this.epass = 'true';
     }
 }
